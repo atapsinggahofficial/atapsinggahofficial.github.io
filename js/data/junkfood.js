@@ -5,7 +5,7 @@ export const daftarJunkfood = [
         kategori: "snack",
         harga: 25000,
         deskripsi: "Piring berisi campuran keripik kentang, kacang, dan camilan ringan lainnya.",
-        gambar: "assets/img/Snack/Mix_platter.jpeg",
+        gambar: "assets/img/junkfood/mix_platter.png",
     },
     {
         id: 202,
@@ -13,6 +13,6 @@ export const daftarJunkfood = [
         kategori: "snack",
         harga: 15000,
         deskripsi: "Risol goreng isi sayuran segar dengan",
-        gambar: "assets/img/Snack/Risol_sayur.jpeg",
+        gambar: "assets/img/junkfood/risol_sayur.png",
     },
 ];

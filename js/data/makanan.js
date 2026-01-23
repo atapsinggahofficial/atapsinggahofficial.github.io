@@ -37,7 +37,7 @@ export const daftarMakanan = [
         kategori: "makanan",
         harga: 20000,
         deskripsi: "Nasi putih hangat dengan pilihan lauk ayam goreng tepung renyah.",
-        gambar: "assets/img/Makanan/Nasi_goreng.jpeg",
+        gambar: "assets/img/makanan/nasgor.png",
     },
     {
         id: 106,
@@ -45,7 +45,7 @@ export const daftarMakanan = [
         kategori: "makanan",
         harga: 20000,
         deskripsi: "Mie goreng khas Jawa dengan sayuran segar dan bakso ayam.",
-        gambar: "assets/img/Makanan/Mie_tek-tek.jpeg",
+        gambar: "assets/img/makanan/tektek.png",
     },
     {
         id: 107,
@@ -53,7 +53,7 @@ export const daftarMakanan = [
         kategori: "makanan",
         harga: 25000,
         deskripsi: "Ayam goreng tepung renyah dengan kremesan gurih khas Indonesia.",
-        gambar: "assets/img/Makanan/Ayam_kremes.jpeg",
+        gambar: "assets/img/makanan/ayam_keremes.png",
     },
     {
         id: 108,
@@ -61,7 +61,7 @@ export const daftarMakanan = [
         kategori: "makanan",
         harga: 25000,
         deskripsi: "Ayam bakar bumbu madu disajikan dengan sambal terasi dan lalapan.",
-        gambar: "assets/img/Makanan/Ayam_bakar.jpeg",
+        gambar: "assets/img/makanan/ayam_bakar.png",
     },
     // ... tambahkan sisa makanan di sini
 ];

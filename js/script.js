@@ -220,11 +220,11 @@ window.sendWA = function() {
     let grandTotal = 0;
     keranjang.forEach((item, i) => {
         grandTotal += (item.harga * item.qty);
-        rincian += `${i + 1}. *${item.nama}* (x${item.qty})\n`;
+        rincian += `${i + 1}. ${item.nama} (x${item.qty})\n`;
     });
 
     const orderID = `AS.${Math.random().toString(36).substring(2,5).toUpperCase()}`;
-    const pesan = `🏨 *PESANAN BARU - ATAP SINGGAH*\n🆔 *Order ID: ${orderID}*\n👤 *Pemesan:* ${nama}\n📍 *Lokasi:* ${villa}\n------------------------------------------\n\n*Daftar Pesanan:*\n${rincian}\n*📝 Catatan:* _${catatanGlobal}_\n\n💵 *Total Estimasi: ${formatRupiah(grandTotal)}*\n------------------------------------------`;
+    const pesan = `🏨 PESANAN BARU - ATAP SINGGAH\n🆔 Order ID: ${orderID}\n👤 Pemesan: ${nama}\n📍 Lokasi: villa ${villa}\n------------------------------------------\n\nDaftar Pesanan:\n${rincian}\n 📝 Catatan: _${catatanGlobal}_\n\n💵 Total Estimasi: ${formatRupiah(grandTotal)}\n------------------------------------------`;
 
     window.open(`https://wa.me/628984940766?text=${encodeURIComponent(pesan)}`, '_blank');
 }
