@@ -17,7 +17,7 @@ export const daftarMakanan = [
     },
     {
         id: 103,
-        nama: "Rice Bowl Chicken Karage",
+        nama: "Rice Bowl Chicken Karaage",
         kategori: "makanan",
         harga: 20000,
         deskripsi: "Ayam bakar bumbu madu disajikan dengan sambal terasi dan lalapan.",
