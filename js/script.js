@@ -226,5 +226,5 @@ window.sendWA = function() {
     const orderID = `AS.${Math.random().toString(36).substring(2,5).toUpperCase()}`;
     const pesan = `🏨 *PESANAN BARU - ATAP SINGGAH*\n🆔 *Order ID: ${orderID}*\n👤 *Pemesan:* ${nama}\n📍 *Lokasi:* ${villa}\n------------------------------------------\n\n*Daftar Pesanan:*\n${rincian}\n*📝 Catatan:* _${catatanGlobal}_\n\n💵 *Total Estimasi: ${formatRupiah(grandTotal)}*\n------------------------------------------`;
 
-    window.open(`https://wa.me/6285975409429?text=${encodeURIComponent(pesan)}`, '_blank');
+    window.open(`https://wa.me/628984940766?text=${encodeURIComponent(pesan)}`, '_blank');
 }

@@ -5,7 +5,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 23000,
         deskripsi: "Espresso dengan tambahan air dingin, menyegarkan dan ringan.",
-        gambar: "assets/img/Minuman/Americano_ice.png",
+        gambar: "assets/img/minuman/americano_ice.png",
     },
     {
         id: 302,
@@ -13,7 +13,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 25000,
         deskripsi: "Espresso dengan susu dingin dan sirup karamel manis.",
-        gambar: "assets/img/Minuman/Caramel_macchiato.png",
+        gambar: "assets/img/minuman/caramel_macchiato.png",
     },
     {
         id: 303,
@@ -21,7 +21,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 15000,
         deskripsi: "Susu Dancow rasa coklat yang lezat dan menyehatkan.",
-        gambar: "assets/img/Minuman/Dancow_coklat.jpeg",
+        gambar: "assets/img/minuman/dancow_coklat.png",
     },
     {
         id: 304,
@@ -29,7 +29,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 15000,
         deskripsi: "Susu Dancow rasa original yang lezat dan menyehatkan.",
-        gambar: "assets/img/Minuman/Dancow_putih.jpeg",
+        gambar: "assets/img/minuman/dancow_putih.png",
     },
     {
         id: 305,
@@ -37,7 +37,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 10000,
         deskripsi: "Teh manis dingin yang menyegarkan.",
-        gambar: "assets/img/Minuman/Es_teh.jpeg",
+        gambar: "assets/img/minuman/es_teh.png",
     },
     {
         id: 306,
@@ -45,7 +45,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 17000,
         deskripsi: "Jus segar dari buah naga merah yang kaya antioksidan.",
-        gambar: "assets/img/Minuman/Jus_buah_naga.jpeg",
+        gambar: "assets/img/minuman/jus_naga.png",
     },
     {
         id: 307,
@@ -53,7 +53,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 17000,
         deskripsi: "Jus segar dari pisang pilihan yang manis dan lezat.",
-        gambar: "assets/img/Minuman/Jus_pisang.png",
+        gambar: "assets/img/minuman/jus_pisang.png",
     },
     {
         id: 308,
@@ -61,7 +61,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 17000,
         deskripsi: "Jus segar dari mangga harum manis yang legit.",
-        gambar: "assets/img/Minuman/Jus_mangga.jpeg",
+        gambar: "assets/img/minuman/jus_mangga.png",
     },
     {
         id: 309,
@@ -69,7 +69,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 25000,
         deskripsi: "Minuman tradisional manis dari gula aren asli.",
-        gambar: "assets/img/Minuman/Palm_sugar.png",
+        gambar: "assets/img/minuman/palm_sugar.png",
     },
     {
         id: 310,
@@ -77,7 +77,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 10000,
         deskripsi: "Minuman serbuk rasa buah dengan tambahan jelly kenyal.",
-        gambar: "assets/img/Minuman/Pop_ice_jelly.png",
+        gambar: "assets/img/minuman/pop_ice_jelly.png",
     },
     {
         id: 311,
@@ -85,7 +85,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 25000,
         deskripsi: "Espresso dengan susu dingin dan sirup vanilla harum.",
-        gambar: "assets/img/Minuman/Vanilla_latte.png",
+        gambar: "assets/img/minuman/vanilla_latte.png",
     },
     {
         id: 312,
@@ -93,7 +93,7 @@ export const daftarMinuman = [
         kategori: "minuman",
         harga: 25000,
         deskripsi: "Espresso dengan susu dingin dan sirup butterscotch manis.",
-        gambar: "assets/img/Minuman/Butterscotch_latte.png",
+        gambar: "assets/img/minuman/butterscotch_latte.png",
     },
     // ... tambahkan sisa minuman di sini
 ];
