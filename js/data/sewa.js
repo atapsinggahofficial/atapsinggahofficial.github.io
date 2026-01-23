@@ -5,7 +5,7 @@ export const daftarSewa = [
         kategori: "sewa",
         harga: 50000,
         deskripsi: "Handuk,Sikat gigi, pasta gigi, sabun mandi, dan shampoo dalam kemasan travel size.",
-        gambar: "assets/img/sewa/amenities.png",
+        gambar: "assets/img/sewa/amenities.webp",
     },
     {
         id: 402,
@@ -13,7 +13,7 @@ export const daftarSewa = [
         kategori: "sewa",
         harga: 50000,
         deskripsi: "Pelampung kolam renang berbentuk unik untuk bersantai di air.",
-        gambar: "assets/img/sewa/floaties.png",
+        gambar: "assets/img/sewa/floaties.webp",
     },
     {
         id: 403,
@@ -21,7 +21,7 @@ export const daftarSewa = [
         kategori: "sewa",
         harga: 35000,
         deskripsi: "Kasur lipat, bantal, guling, dan selimut untuk tambahan tidur.",
-        gambar: "assets/img/sewa/extra_bed.png",
+        gambar: "assets/img/sewa/extra_bed.webp",
     },
     {
         id: 404,
@@ -29,7 +29,7 @@ export const daftarSewa = [
         kategori: "sewa",
         harga: 200000,
         deskripsi: "Paket lengkap alat barbeque termasuk panggangan, arang, alat pemanggang, dan peralatan makan.",
-        gambar: "assets/img/sewa/paket_grill.png",
+        gambar: "assets/img/sewa/paket_grill.webp",
     },
     {
         id: 405,
@@ -37,7 +37,7 @@ export const daftarSewa = [
         kategori: "sewa",
         harga: 150000,
         deskripsi: "Paket lengkap untuk barbeque ayam bakar, termasuk arang, bumbu, dan peralatan.",
-        gambar: "assets/img/sewa/paket_ayambakar.png",
+        gambar: "assets/img/sewa/paket_ayambakar.webp",
     },
     {
         id: 406,
@@ -45,6 +45,6 @@ export const daftarSewa = [
         kategori: "sewa",
         harga: 100000,
         deskripsi: "Paket lengkap untuk barbeque sosis dan jagung bakar, termasuk arang, bumbu, dan peralatan.",
-        gambar: "assets/img/sewa/paket_sosisbakar.png",
+        gambar: "assets/img/sewa/paket_sosisbakar.webp",
     },
 ];
