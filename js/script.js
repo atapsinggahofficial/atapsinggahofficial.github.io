@@ -224,7 +224,7 @@ window.sendWA = function() {
     });
 
     const orderID = `AS.${Math.random().toString(36).substring(2,5).toUpperCase()}`;
-    const pesan = `🏨 PESANAN BARU - ATAP SINGGAH\n🆔 Order ID: ${orderID}\n👤 Pemesan: ${nama}\n📍 Lokasi: villa ${villa}\n------------------------------------------\n\nDaftar Pesanan:\n${rincian}\n📝 Catatan: _${catatanGlobal}_\n\n💵 Total Estimasi: ${formatRupiah(grandTotal)}\n\n------------------------------------------`;
+    const pesan = `🏨 PESANAN BARU - ATAP SINGGAH\n🆔 Order ID: ${orderID}\n👤 Pemesan: ${nama}\n📍 Lokasi: Villa ${villa}\n------------------------------------------\n\nDaftar Pesanan:\n${rincian}\n📝 Catatan: _${catatanGlobal}_\n\n💵 Total Estimasi: ${formatRupiah(grandTotal)}\n\n------------------------------------------`;
 
     window.open(`https://wa.me/6285714687424?text=${encodeURIComponent(pesan)}`, '_blank');
 }
