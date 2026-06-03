@@ -1,12 +1,17 @@
 // 1. IMPORT DATA DARI FILE PUSAT
+
 import { daftarLayanan, daftarVilla } from './data.js';
 
 let keranjang = [];
+// Variabel global penanda status operasional (true = buka, false = tutup)
+let isStoreOpen = true; 
 
 document.addEventListener('DOMContentLoaded', () => {
+    checkOperationalHours(); // Wajib dijalankan SEBELUM renderMenu agar status tombol akurat
     initVilla();
     renderMenu();
-
+    initSplashScreen(); // <-- SEKARANG AMAN, FUNGSI SUDAH TERSEDIA DI BAWAH
+    
     // Event listener untuk filter kategori
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -18,6 +23,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+/* ==========================================================================
+   FUNGSI ANIMASI SPLASH SCREEN (MENGHILANGKAN LOADING)
+   ========================================================================== */
+function initSplashScreen() {
+    const splash = document.getElementById('splash-screen');
+    if (!splash) return;
+    setTimeout(() => {
+        splash.style.opacity = '0';
+        splash.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => splash.style.display = 'none', 500);
+    }, 1000); // Durasi loading dibuat cepat (1 detik) agar nyaman saat develop & testing
+}
+
+// Logika Validasi Jam Operasional & Manajemen State Warna
+function checkOperationalHours() {
+    const statusElement = document.getElementById('operational-status');
+    const floatingCart = document.getElementById('floating-cart');
+    if (!statusElement) return;
+
+    const now = new Date();
+    const currentHour = now.getHours();
+    
+    const openHour = 8;   // Jam Buka (08:00)
+    const closeHour = 22; // Jam Tutup (22:00)
+
+    if (currentHour >= openHour && currentHour < closeHour) {
+        isStoreOpen = true;
+        statusElement.innerHTML = `Layanan: <strong>0857-1468-7424</strong> • <span style="color: #2c5d63; font-weight: 700;">🟢 BUKA</span>`;
+        if (floatingCart) floatingCart.classList.remove('store-closed');
+    } else {
+        isStoreOpen = false;
+        statusElement.innerHTML = `Layanan: <strong>0857-1468-7424</strong> • <span style="color: #e63946; font-weight: 700;">🔴 TUTUP</span>`;
+        if (floatingCart) floatingCart.classList.add('store-closed');
+    }
+}
 
 // Fungsi pembantu untuk format Rupiah
 function formatRupiah(angka) {
@@ -42,7 +83,7 @@ function initVilla() {
     });
 }
 
-// Menampilkan produk ke dalam grid
+// Menampilkan produk ke dalam grid dengan pengecekan waktu operasional
 function renderMenu(filter = 'semua') {
     const box = document.getElementById('menu-box');
     if (!box) return;
@@ -55,6 +96,36 @@ function renderMenu(filter = 'semua') {
         const isHabis = item.tersedia === false;
         const displayHarga = typeof item.harga === 'number' ? formatRupiah(item.harga) : item.harga;
 
+        let actionButtonHtml = "";
+
+        // Alur penentuan tombol aksi berdasarkan kondisi toko & produk
+        if (isInfo) {
+            actionButtonHtml = `
+                <button class="btn-wa" style="width:100%; background:#666" onclick="window.bukaDetail(${item.id})">
+                    LIHAT INFO
+                </button>`;
+        } else if (isHabis) {
+            actionButtonHtml = `
+                <button class="btn-wa" style="width:100%; background:#666" disabled>
+                    STOK HABIS
+                </button>`;
+        } else if (!isStoreOpen) {
+            // Jika toko tutup, sembunyikan input qty dan buat tombol menjadi disabled merah
+            actionButtonHtml = `
+                <div class="order-controls">
+                    <button class="btn-wa" style="width:100%; flex:1; background:#e63946; cursor:not-allowed;" disabled>
+                        TUTUP
+                    </button>
+                </div>`;
+        } else {
+            // Kondisi normal saat toko buka
+            actionButtonHtml = `
+                <div class="order-controls">
+                    <input type="number" id="qty-${item.id}" value="1" min="1" class="qty-input">
+                    <button class="btn-wa" style="flex:1" onclick="window.tambahKeKeranjang(${item.id})">TAMBAH</button>
+                </div>`;
+        }
+
         box.innerHTML += `
             <div class="menu-card ${isHabis ? 'out-of-stock' : ''}">
                 <div class="menu-img" onclick="window.bukaDetail(${item.id})" style="background-image: url('${item.gambar}')"></div>
@@ -63,16 +134,7 @@ function renderMenu(filter = 'semua') {
                     <p>${item.deskripsi.substring(0, 65)}...</p>
                     <div class="menu-footer">
                         <span class="price">${displayHarga}</span>
-                        ${!isInfo && !isHabis ? `
-                            <div class="order-controls">
-                                <input type="number" id="qty-${item.id}" value="1" min="1" class="qty-input">
-                                <button class="btn-wa" style="flex:1" onclick="window.tambahKeKeranjang(${item.id})">TAMBAH</button>
-                            </div>
-                        ` : `
-                            <button class="btn-wa" style="width:100%; background:#666" onclick="window.bukaDetail(${item.id})">
-                                ${isHabis ? 'STOK HABIS' : 'LIHAT INFO'}
-                            </button>
-                        `}
+                        ${actionButtonHtml}
                     </div>
                 </div>
             </div>`;
@@ -83,7 +145,7 @@ function renderMenu(filter = 'semua') {
    FUNGSI GLOBAL (WAJIB PAKAI window. AGAR BISA DIPANGGIL ONCLICK HTML)
    ========================================================================== */
 
-// Modal Detail Produk - PERBAIKAN GAMBAR DISINI
+// Modal Detail Produk dengan kontrol validasi toko tutup
 window.bukaDetail = function(id) {
     const item = daftarLayanan.find(obj => obj.id === id);
     if (!item) return;
@@ -92,7 +154,6 @@ window.bukaDetail = function(id) {
     document.getElementById('detail-harga').innerText = typeof item.harga === 'number' ? formatRupiah(item.harga) : item.harga;
     document.getElementById('detail-deskripsi').innerText = item.deskripsi;
     
-    // Pastikan ID detail-img ada dan set background-nya
     const imgContainer = document.getElementById('detail-img');
     if (imgContainer) {
         imgContainer.style.backgroundImage = `url('${item.gambar}')`;
@@ -102,11 +163,27 @@ window.bukaDetail = function(id) {
     
     const btn = document.getElementById('detail-btn-tambah');
     if (btn) {
-        btn.style.display = (item.kategori === 'info' || !item.tersedia) ? 'none' : 'block';
-        btn.onclick = () => { 
-            window.tambahKeKeranjang(item.id); 
-            window.closeDetail(); 
-        };
+        if (item.kategori === 'info' || !item.tersedia) {
+            btn.style.display = 'none';
+        } else if (!isStoreOpen) {
+            // Blokir tombol tambah di dalam modal jika waktu operasional habis
+            btn.style.display = 'block';
+            btn.style.background = '#e63946';
+            btn.innerText = 'LAYANAN SEDANG TUTUP';
+            btn.style.cursor = 'not-allowed';
+            btn.disabled = true;
+        } else {
+            // Kembalikan ke struktur normal jika toko buka
+            btn.style.display = 'block';
+            btn.style.background = 'var(--wa-color)';
+            btn.innerText = 'TAMBAH KE KERANJANG';
+            btn.style.cursor = 'pointer';
+            btn.disabled = false;
+            btn.onclick = () => { 
+                window.tambahKeKeranjang(item.id); 
+                window.closeDetail(); 
+            };
+        }
     }
     
     document.getElementById('detail-modal').style.display = 'flex';
@@ -116,7 +193,14 @@ window.closeDetail = function() {
     document.getElementById('detail-modal').style.display = 'none'; 
 }
 
+// Menambahkan item ke keranjang belanja dengan proteksi lapis ganda
 window.tambahKeKeranjang = function(id) {
+    // Proteksi sistem jika ada user nakal tembus via console inspect element
+    if (!isStoreOpen) {
+        alert("⚠️ Maaf, Atap Singgah sudah tutup. Silakan lakukan pemesanan esok hari pada jam 08:00.");
+        return;
+    }
+
     const item = daftarLayanan.find(obj => obj.id === id);
     const qtyInput = document.getElementById(`qty-${id}`);
     const qty = parseInt(qtyInput?.value || 1);
@@ -137,11 +221,28 @@ function updateFloatingButton() {
     const count = keranjang.reduce((s, i) => s + i.qty, 0);
     const btn = document.getElementById('floating-cart');
     if (!btn) return;
-    btn.style.display = count > 0 ? 'flex' : 'none';
-    btn.innerHTML = `🛒 Lihat Keranjang (${count})`;
+    
+    // Tombol melayang hanya muncul jika ada item di dalam keranjang
+    if (count > 0) {
+        btn.style.display = 'flex';
+        btn.innerHTML = `🛒 Lihat Keranjang (${count})`;
+        
+        // Atur warna background tombol melayang berdasarkan status operasional toko
+        if (!isStoreOpen) {
+            btn.classList.add('store-closed');
+        } else {
+            btn.classList.remove('store-closed');
+        }
+    } else {
+        btn.style.display = 'none';
+    }
 }
 
 window.toggleModal = function() {
+    if (!isStoreOpen) {
+        alert("⚠️ Maaf, Atap Singgah sudah tutup. Silakan lakukan pemesanan esok hari pada jam 08:00.");
+        return;
+    }
     const m = document.getElementById('cart-modal');
     if (!m) return;
     const isHidden = (m.style.display === 'none' || m.style.display === '');
@@ -207,6 +308,12 @@ window.hapusItem = function(i) {
 }
 
 window.sendWA = function() {
+    // Validasi tambahan saat pengguna menekan kirim di dalam modal keranjang
+    if (!isStoreOpen) {
+        alert("⚠️ Maaf, pemesanan gagal dikirim karena waktu operasional Atap Singgah sudah berakhir (TUTUP).");
+        return;
+    }
+
     const villa = document.getElementById('villa-name').value;
     const nama = document.getElementById('customer-name').value.trim();
     const catatanGlobal = document.getElementById('global-note').value.trim() || "Tidak ada catatan.";

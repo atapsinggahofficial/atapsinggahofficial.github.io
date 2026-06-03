@@ -10,10 +10,18 @@
 </head>
 <body>
 
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">Atap<span>Singgah</span></div>
+            <div class="splash-loader"></div>
+            <p>Menyiapkan Layanan Terbaik Untuk Anda...</p>
+        </div>
+    </div>
+
     <header>
         <nav class="navbar">
             <div class="logo">Atap<span>Singgah</span></div>
-            <div class="wa-info">Layanan: <strong>0857-1468-7424</strong></div>
+            <div class="wa-info" id="operational-status"></div>
         </nav>
     </header>
 
@@ -88,9 +96,6 @@
     <button id="floating-cart" onclick="toggleModal()">
         🛒 Lihat Keranjang (0)
     </button>
-    <!-- <button id="floating-cart" onclick="toggleModal()" style="position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: var(--wa-color); color: white; padding: 16px 32px; border-radius: 50px; border: none; font-weight: 700; box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4); display: none; z-index: 999; cursor: pointer; align-items: center; gap: 12px; font-size: 15px; transition: 0.3s;">
-        🛒 Lihat Keranjang (0)
-    </button> -->
 
 <script type="module" src="js/script.js"></script>
 </body>
