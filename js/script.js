@@ -34,7 +34,7 @@ function initSplashScreen() {
         splash.style.opacity = '0';
         splash.style.transition = 'opacity 0.5s ease';
         setTimeout(() => splash.style.display = 'none', 500);
-    }, 1000); // Durasi loading dibuat cepat (1 detik) agar nyaman saat develop & testing
+    }, 1500); // Durasi loading dibuat cepat (1 detik) agar nyaman saat develop & testing
 }
 
 // Logika Validasi Jam Operasional & Manajemen State Warna
